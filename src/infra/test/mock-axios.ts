@@ -1,16 +1,15 @@
-import axios from "axios"
+import axios from 'axios'
 import faker from 'faker'
 
 export const MockHttpReponse = (): any => ({
-    data: faker.random.objectElement,
-    status: faker.datatype.number
+  data: faker.random.objectElement,
+  status: faker.datatype.number
 })
 
 export const mockAxios = (): jest.Mocked<typeof axios> => {
+  const mockedAxios = axios as jest.Mocked<typeof axios>
 
-    const mockedAxios = axios as jest.Mocked<typeof axios>
-    
-    mockedAxios.post.mockResolvedValue(MockHttpReponse())
+  mockedAxios.post.mockResolvedValue(MockHttpReponse())
 
-    return mockedAxios
+  return mockedAxios
 }

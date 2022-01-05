@@ -1,9 +1,9 @@
-import { Validation } from "../protocols/validation"
+import { Validation } from '../protocols/validation'
 
 export class ValidationStub implements Validation {
-    errorMessage!: string | undefined
+  errorMessage!: string | undefined
 
-    validate (): string {
-        return this.errorMessage!
-    }
+  validate (): string {
+    return this.errorMessage!
+  }
 }

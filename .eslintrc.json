@@ -6,16 +6,20 @@
     },
     "extends": [
         "standard-with-typescript",
-        "plugin:resact/recommended"
+        "plugin:react/recommended"
     ],
     "plugins": ["react"],
-    "parseOptions": {
+    "parserOptions": {
         "project": "./tsconfig.json"
     },
     "rules": {
         "@typescript-eslint/consistent-type-definitions": "off",
         "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/comma-spacing": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
         "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error"
+        "react/jsx-uses-vars": "error",
+        "react/prop-types": "off"
     }
 }
