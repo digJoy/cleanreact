@@ -1,6 +1,6 @@
 const path = require('path')
-const {DefinePlugin} = require('webpack')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const { DefinePlugin } = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -13,7 +13,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', 'scss'],
     alias: {
-      '@': path.join(__dirname, 'src')
+    '@': path.join(__dirname, 'src')
     }
   },
   module: {
