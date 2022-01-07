@@ -5,11 +5,12 @@ import faker from 'faker'
 // import { InvalidCredentialsError } from '@/domain/errors'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
-import { AuthenticationSpy, ValidationStub } from '@/presentation/test'
+import { AuthenticationSpy, ValidationStub, SaveAccessTokenMock } from '@/presentation/test'
 
 type SutTypes = {
   sut: RenderResult
   authenticationSpy: AuthenticationSpy
+  saveAccessTokenMock: SaveAccessTokenMock
 }
 
 type SutParams = {
@@ -20,18 +21,20 @@ const history = createMemoryHistory({ initialEntries: ['/login'] })
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   const authenticationSpy = new AuthenticationSpy()
+  const saveAccessTokenMock = new SaveAccessTokenMock()
 
   validationStub.errorMessage = params?.validationError
-
+  // ver se é por causa desse history no nvigation que ta dando ruim nos meus teste
   const sut = render(
         <Router location={''} navigator={history}>
-            <Login validation={validationStub} authentication={authenticationSpy} />
+            <Login validation={validationStub} authentication={authenticationSpy} saveAccessToken={saveAccessTokenMock} />
         </Router>
   )
 
   return {
     sut,
-    authenticationSpy
+    authenticationSpy,
+    saveAccessTokenMock
   }
 }
 
@@ -81,11 +84,6 @@ const testButtonIsDisabled = (sut: RenderResult, fieldName: string, isDisabled: 
 
 describe('Login component', () => {
   afterEach(cleanup)
-
-  beforeEach(() => {
-    localStorage.clear()
-  })
-
   test('Should start with initial state', () => {
     const validationError = faker.random.words()
     const { sut } = makeSut({ validationError })
@@ -168,13 +166,15 @@ describe('Login component', () => {
   //     testErrorWrapChildCount(sut, 1)
   // })
 
-  // test('Should add accessToken to localStorage on success', async () => {
-  //     const { sut, authenticationSpy } = makeSut()
-  //     await simulateValidSubmit(sut)
-  //     expect(localStorage.setItem).toHaveBeenCalledWith('accessToken', authenticationSpy.account.accessToken)
-  //     // expect(history.length).toBe(1)
-  //     expect(history.location.pathname).toBe('/') // ta dando erro
-  // })
+  test('Should call SaveAccessToken on success', async () => {
+    const { sut, authenticationSpy, saveAccessTokenMock } = makeSut()
+    await simulateValidSubmit(sut)
+    expect(saveAccessTokenMock.accessToken).toBe(authenticationSpy.account.accessToken)
+    // expect(history.length).toBe(1)
+    // expect(history.location.pathname).toBe('/') // ta dando erro
+  })
+
+  // test de exceção do teste acima
 
   test('Should go to signup page', () => {
     const { sut } = makeSut()
