@@ -13,7 +13,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', 'scss'],
     alias: {
-    '@': path.join(__dirname, 'src')
+      '@': path.join(__dirname, 'src')
     }
   },
   module: {
@@ -25,7 +25,7 @@ module.exports = {
       }, {
         test: /\.scss$/,
         use: [
-          { loader: 'style-loader' }, 
+          { loader: 'style-loader' },
           { loader: 'css-loader', options: { modules: true } },
           { loader: 'sass-loader' }
         ]
