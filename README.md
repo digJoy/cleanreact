@@ -1,1 +1,2 @@
 [![Build Status](https://app.travis-ci.com/digJoy/cleanreact.svg?branch=master)](https://app.travis-ci.com/digJoy/cleanreact)
+[![Coverage Status](https://coveralls.io/repos/github/digJoy/cleanreact/badge.svg?branch=1.2.0)](https://coveralls.io/github/digJoy/cleanreact?branch=master)
