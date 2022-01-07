@@ -1,4 +1,1 @@
-# cleanreact
-test
-test
-test
+[![Build Status](https://app.travis-ci.com/digJoy/cleanreact.svg?branch=master)](https://app.travis-ci.com/digJoy/cleanreact)
