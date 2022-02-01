@@ -4,9 +4,9 @@ import { InvalidFieldError } from '@/validation/errors'
 
 // composite do tipo validation com todos os filhos com esse formato
 export class CompareFieldsValidation implements FieldValidation {
-  constructor (readonly field: string, private readonly valueToCompare: string) {}
+  constructor (readonly field: string, private readonly fieldToCompare: string) {}
 
-  validate (value: string): Error {
-    return value !== this.valueToCompare ? new InvalidFieldError() : null as any
+  validate (input: object): Error {
+    return input[this.field] !== input[this.fieldToCompare] ? new InvalidFieldError() : null as any
   }
 }

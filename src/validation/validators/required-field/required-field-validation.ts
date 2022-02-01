@@ -5,8 +5,8 @@ import { RequiredFieldError } from '@/validation/errors'
 export class RequiredFieldValidation implements FieldValidation {
   constructor (readonly field: string) {}
 
-  validate (value: string): Error {
+  validate (input: object): Error {
     // @ts-expect-error
-    return value ? null : new RequiredFieldError()
+    return input[this.field] ? null : new RequiredFieldError()
   }
 }
