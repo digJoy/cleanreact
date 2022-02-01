@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Footer, LoginHeader, Input, Status, SubmitButton } from '@/presentation/components'
-import Styles from './style.scss'
+import Styles from './styles.scss'
 import Context from '@/presentation/contexts/form/context'
 import { Link } from 'react-router-dom'
 import { Validation } from '@/presentation/protocols/validation'
